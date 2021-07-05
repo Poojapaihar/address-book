@@ -1,0 +1,21 @@
+<div class="results-block">
+	<%= render 'layouts/messages' %>
+</div>
+
+<% if @records %>
+	<div class="card card-header results-block">
+		<table class="col-md-12">
+			<tbody>
+				<p class="text-primary"><%= pluralize(@count, "record") %> matching</p>
+				<% @records.each do |record| %>
+					<tr>
+						<td><strong>Name: </strong><%= record.full_name %></td>
+						<td><strong>Email: </strong><%= record.email %></td>
+						<td><strong>Action: </strong><%= link_to 'View', record_path(record), class: 'btn btn-sm btn-success' %>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+<% end %>

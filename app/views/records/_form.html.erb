@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-9">
+  	<%= render 'devise/shared/errors', obj: @record %>
+    <%= form_with(model: @record, local: true) do |f| %>
+
+	  <div class="form-row">
+        <div class="form-group col-md-6">
+          <%= f.label :first_name %>
+          <%= f.text_field :first_name, autofocus: true, autocomplete: 'first_name', class: 'form-control' %>
+        </div>
+        <div class="form-group col-md-6">
+          <%= f.label :last_name %>
+          <%= f.text_field :last_name, autofocus: true, autocomplete: 'last_name', class: 'form-control' %>
+        </div>
+	  </div>
+
+	  <div class="form-group">
+	    <%= f.label :address %>
+	    <%= f.text_field :address, autocomplete: 'address', class: 'form-control' %>
+	  </div>
+
+	  <div class="form-group">
+	    <%= f.label :phone %>
+	    <%= f.text_field :phone, autocomplete: 'phone', class: 'form-control' %>
+	  </div>
+
+	  <div class="form-group">
+	    <%= f.label :email %>
+	    <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control' %>
+	  </div>
+
+	  <div class="form-group">
+	    <%= f.submit class: 'btn btn-outline-primary' %>
+	  </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="text-center text-info">
+	<<<%=link_to 'Return to record listing', root_path%>
+</div>
