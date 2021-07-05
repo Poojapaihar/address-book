@@ -12,11 +12,11 @@ class Record < ApplicationRecord
 
 	validates :address, presence: true, length: { minimum: 10, maximum: 100 }
 
-	validates :phone, presence: true, numericality: { only_integer: true }, length: { minimum: 10, maximum: 15 }
+	validates :phone, presence: true, uniqueness: true, numericality: { only_integer: true }, length: { minimum: 10, maximum: 15 }
 
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	
-	validates :email, presence: true, length: { maximum: 105 }, format: { with: VALID_EMAIL_REGEX }
+	validates :email, presence: true, uniqueness: { case_sensitive: false }, length: { maximum: 105 }, format: { with: VALID_EMAIL_REGEX }
 
 	 def full_name
 	  	return "#{first_name} #{last_name}"
