@@ -4,39 +4,37 @@
 		<div class="col-8 mt-4">
 			<div class="card text-center shadow mb-5 bg-white rounded">
 				<%= gravatar_for @record %>
-			  <div class="card-header font-italic text-success">
-			   by <%= current_user.full_name%>
-			  </div>
-			  <div class="card-body">
-			    <div class="card-text text-left">
-			    	<b>Name: </b> <%= @record.full_name %>
-			  	</div>
-			  	<div class="card-text text-left">
-			    	<b>Address: </b> <%= @record.address %>
-			  	</div>
-			  	<div class="card-text text-left">
-			    	<b>Mobile Number: </b> <%= @record.phone %>
-			  	</div>
-			  	<div class="card-text text-left">
-			    	<b>Email Id: </b> <%= @record.email %>
-			  	</div>
-			  	
-				<div class="card-footer text-muted">
-				  	<small>Created <%= time_ago_in_words(@record.created_at) %> ago, edited <%= time_ago_in_words(@record.updated_at) %> ago</small>
-				</div>
-				<div class="card-footer text-center">
-			    	<%= link_to 'Edit', edit_record_path(@record), class: "btn btn-sm btn-info" %>
-				    <%= link_to 'Delete', record_path(@record), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-sm btn-danger'  %>
-			  	</div>
-				<%= form_with scope: :comment, url: add_comment_path, local: true do |f| %>
-					<div class="card-footer">
+			    <div class="card-header font-italic text-success">
+			     by <%= current_user.full_name%>
+			    </div>
+			    <div class="card-body">
+				    <div class="card-text text-left">
+				    	<b>Name: </b> <%= @record.full_name %>
+				  	</div>
+				  	<div class="card-text text-left">
+				    	<b>Address: </b> <%= @record.address %>
+				  	</div>
+				  	<div class="card-text text-left">
+				    	<b>Mobile Number: </b> <%= @record.phone %>
+				  	</div>
+				  	<div class="card-text text-left">
+				    	<b>Email Id: </b> <%= @record.email %>
+				  	</div>
+				  	<div class="card-footer text-muted">
+					  	<small>Created <%= time_ago_in_words(@record.created_at) %> ago, edited <%= time_ago_in_words(@record.updated_at) %> ago</small>
+					</div>
+					<div class="card-footer text-center">
+				    	<%= link_to 'Edit', edit_record_path(@record), class: "btn btn-sm btn-info" %>
+					    <%= link_to 'Delete', record_path(@record), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-sm btn-danger'  %>
+				  	</div>
+				  	<div class="card-footer text-right">
+				    	<%= render @record.comments %>
+				  	</div>
+				  	<div class="card-footer">
 						<span class="input-group-text">Add comment</span>
-						<%= f.text_area :add_comment, class: 'form-control', placeholder: "Add a comment" %>
+						<%= render 'comments/form' %>
 					</div>
-					<div class="text-center">
-						<%= f.submit class: 'btn btn-outline-primary' %>
-					</div>
-				<% end %>
+			    </div>
 			</div>
 		</div>
 	</div>

@@ -1,0 +1,12 @@
+<div>
+
+	<%= form_for([@record, @record.comments.build]) do |f| %>
+		<div>
+			<%= f.text_area :add_comment, class: 'form-control' %>
+		</div>
+		<div class="mt-4">
+			<%= f.submit class: 'btn btn-outline-success '%>
+		</div>
+	<% end %>
+	
+</div>

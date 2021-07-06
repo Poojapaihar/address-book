@@ -1,15 +1,30 @@
 class CommentsController < ApplicationController
 
+	before_action :set_comment
+
 	def create
 
-		@comment = Comment.create(params.require(:comment).permit(:add_comment))
+		# @record = Record.find(params[:record_id])
 
-		if @comment
-			flash[:notice] = "Comment was added successfully."
-			redirect_to root_path
-		else
-			flash[:alert] = "There was somwthing wrong in adding a comment"
-		end
+		@comment = @record.comments.create(params.require(:comment).permit(:add_comment))
+
+		redirect_to record_path(@record)
+	end
+
+	def destroy
+
+		# @record = Record.find(params[:recor
+		@comment = @record.comments.find(params[:id])
+		@comment.destroy
+		redirect_to record_path(@record)
+		
+		
+	end
+
+	private
+
+	def set_comment
+		@record = Record.find(params[:record_id])
 	end
 
 

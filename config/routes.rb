@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   devise_for :users
   root 'records#index'
   
-  resources :records
+  resources :records do
+  	resources :comments
+  end
 
   get 'search_record', to: 'records#search'
-
-  post 'add_comment', to: 'comments#create'
 
 end

@@ -1,0 +1,9 @@
+<div>
+	<%= comment.add_comment %>
+</div>
+<div class="text-muted">
+	<%= time_ago_in_words(comment.created_at) %>
+</div>
+<div>
+	<%= link_to 'Delete', [comment.record, comment], method: :delete, data: { confirm: 'Are you sure?' } , class: 'text-danger'%>
+</div>
